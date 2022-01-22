@@ -6,7 +6,17 @@ var turn=1;
 var tt=document.querySelector(".turn");
 var board=[[0,0,0],[0,0,0],[0,0,0]];
 
+function fcheck(){
+    for(var i=0;i<3;i++){
+        for(var j=0;j<3;j++){
+            if (board[i][j]==0)
+            return false;
+        }
 
+        
+    }
+    return true;
+}
 
 
 
@@ -66,7 +76,7 @@ function diagonalCrossed()
 
 table.addEventListener('click',function(e){
 
-    if(rowCrossed()||columnCrossed()||diagonalCrossed())
+    if(rowCrossed()||columnCrossed()||diagonalCrossed() ||fcheck())
     return; 
     
     
@@ -92,11 +102,11 @@ table.addEventListener('click',function(e){
             if(rowCrossed()||columnCrossed()||diagonalCrossed()){
                 var q=false
                setTimeout(() => {  q=confirm("player "+turn+" lost") }, 500);
-               console.log(q);
+               
                 
-                
-
-                
+            }
+            else if (fcheck()){
+                setTimeout(() => {  q=confirm("Its a draw") }, 500);
             }
 
         }
